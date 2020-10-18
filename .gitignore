@@ -1,5 +1,10 @@
 *.log
 original_repo
 
-
 __pycache__
+
+*.DS_Store
+*.ipynb
+
+outputs/*
+
