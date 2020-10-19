@@ -43,13 +43,16 @@ if __name__ == '__main__':
 
     if not os.path.exists(TOPOLOGIES_DIR):
         os.system("mkdir "+TOPOLOGIES_DIR)
+    else:
+        os.system("cd "+TOPOLOGIES_DIR+"; rm -r *")
+        print("*** Deleting old recommendation topologies!")
 
-    batch_sizes   = [16, 64, 256]
+    batch_sizes   = [1, 64, 128, 256, 512, 1024, 2048, 4096]
 
     emb_dims      = [4, 16, 32]
     emb_tbls      = [26, 26, 26]
     arch_mlp_bot_list = ["13-64-4", "13-64-16", "13-512-256-64-32"]
-    arch_mlp_top_list = ["64-1", "128-1", "512-256-1"]
+    arch_mlp_top_list = ["64-1", "64-1", "96-1"]
 
     for batch_size in batch_sizes:
         for model_num in range(len(emb_dims)):

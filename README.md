@@ -86,7 +86,7 @@ Getting started is simple! SCALE-Sim is completely written in python. At the mom
 *NOTE: SCALE-Sim needs python3 to run correctly. If you are using python2, you might run into typecasting errors* 
 
 ### Custom Experiment
-This experiment will run the default MLPERF_AlphaGoZero_32x32_os architechture contained inside scale.cfg. 
+This experiment will run the default MLPERF_AlphaGoZero_32x32_os architecture contained inside scale.cfg. 
 It will also run alexnet as its network topology.
 * Run the command: ```python scale.py```
 * Wait for the run to finish
@@ -100,7 +100,7 @@ Here is sample of the config file.
 ![sample config](https://raw.githubusercontent.com/AnandS09/SCALE-Sim/master/images/config_example.png "sample config")    
 Architecture presets are the variable parameters for SCALE-Sim, like array size, memory etc.  
 
-The Network Topoplogy csv file contains the network that we want to test in our architechture.  
+The Network Topoplogy csv file contains the network that we want to test in our architecture.  
 SCALE-Sim accepts topology csv in the format shown below.  
 ![yolo_tiny topology](https://raw.githubusercontent.com/AnandS09/SCALE-Sim/master/images/yolo_tiny_csv.png "yolo_tiny.csv")
 

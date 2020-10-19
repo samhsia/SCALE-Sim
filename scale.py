@@ -7,7 +7,7 @@ from absl import app
 
 FLAGS = flags.FLAGS
 #name of flag | default | explanation
-flags.DEFINE_string("arch_config","./configs/scale.cfg","file where we are getting our architechture from")
+flags.DEFINE_string("arch_config","./configs/scale.cfg","file where we are getting our architecture from")
 flags.DEFINE_string("network","./topologies/conv_nets/alexnet.csv","topology that we are reading")
 
 
@@ -22,7 +22,7 @@ class scale:
         net_sec  = 'network_presets'
        # config_filename = "./scale.cfg"
         config_filename = FLAGS.arch_config
-        print("Using Architechture from ",config_filename)
+        print("Using Architecture from ",config_filename)
 
         config = cp.ConfigParser()
         config.read(config_filename)

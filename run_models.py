@@ -1,7 +1,7 @@
 import os, sys
 
 def gen_config(topology, acc_num, array_dim, i_sram_size, w_sram_size, o_sram_size):
-    model = topology[0:6]
+    model = topology[0:-4]
     filename = ACC_DIR+"acc_"+str(acc_num)+"_"+model+".cfg"
 
     file_config = open(filename, 'w')
@@ -27,7 +27,7 @@ def gen_config(topology, acc_num, array_dim, i_sram_size, w_sram_size, o_sram_si
     file_config.close()
 
 def run_config(topology, acc_num):
-    model    = topology[0:6]
+    model    = topology[0:-4]
     topology = TOPOLOGIES_DIR+topology
     acc      = ACC_DIR+"acc_"+str(acc_num)+"_"+model+".cfg"
     
@@ -39,20 +39,38 @@ if __name__ == '__main__':
 
     TOPOLOGIES_DIR = "./topologies/recommendation/"
     ACC_DIR        = "./configs/multistage_acc/"
+    OUTPUT_DIR     = "./outputs/"
 
     if not os.path.exists(TOPOLOGIES_DIR):
-        os.system("mkdir "+TOPOLOGIES_DIR)
+        print("*** Topologies do not exist!")
+
     if not os.path.exists(ACC_DIR):
         os.system("mkdir "+ACC_DIR)
+    else:
+        os.system("cd "+ACC_DIR+"; rm -r *")
+        print("*** Deleting old accelerator configurations")
 
-    array_dims = [[16, 16], [32, 32]]
-    i_sram_sizes = [512, 1024]
-    w_sram_sizes = [512, 1024]
-    o_sram_sizes = [512, 1024]
+    if not os.path.exists(OUTPUT_DIR):
+        os.system("mkdir "+OUTPUT_DIR)
+    else:
+        os.system("cd "+OUTPUT_DIR+"; rm -rf *")
+        print("*** Deleting old output logs")
 
-    topologies = ["dlrm_0_e4_bs16.csv", "dlrm_1_e16_bs64.csv"]
+    array_dims = [[256, 256], [64, 64], [16, 16], [4,4]]
+    i_sram_sizes = [8192, 2048, 512, 128]
+    w_sram_sizes = [8192, 2048, 512, 128]
+    o_sram_sizes = [8192, 2048, 512, 128]
+
+    # topologies = ["dlrm_0_e4_bs16.csv", "dlrm_1_e16_bs64.csv"]
+    topologies = sorted(os.listdir(TOPOLOGIES_DIR))
+    print(topologies)
+
+    experiment_num = 0
 
     for topology in topologies:
         for acc_num in range(len(array_dims)):
+            print("********** Running Experiment {}/{} **********".format(experiment_num+1, len(topologies)*len(array_dims)))
             gen_config(topology, acc_num, array_dims[acc_num], i_sram_sizes[acc_num], w_sram_sizes[acc_num], o_sram_sizes[acc_num])
             run_config(topology, acc_num)
+            print("********** Finished Experiment {}/{} **********".format(experiment_num+1, len(topologies)*len(array_dims)))
+            experiment_num+=1
