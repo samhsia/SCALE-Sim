@@ -1,4 +1,4 @@
-FROM hubris.int.seas.harvard.edu/harvardacc/clusterbase:latest
+FROM hubris.int.seas.harvard.edu/harvardacc/clusterbase:gpu
 
 RUN apt-get update && apt-get install -y \
     vim \
@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip
 
+RUN pip3 install --upgrade pip
+
+ADD requirements.txt .
 RUN pip3 install -r requirements.txt
 
 WORKDIR /group/vlsiarch/schsia/SCALE-Sim/
