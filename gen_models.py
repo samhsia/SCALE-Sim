@@ -47,7 +47,7 @@ if __name__ == '__main__':
         os.system("cd "+TOPOLOGIES_DIR+"; rm -r *")
         print("*** Deleting old recommendation topologies!")
 
-    batch_sizes   = [1, 16, 32, 64, 128, 256, 512, 1024]
+    batch_sizes   = [1, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 
     emb_dims      = [4, 16, 32]
     emb_tbls      = [26, 26, 26]
