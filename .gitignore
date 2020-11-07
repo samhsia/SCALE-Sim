@@ -5,6 +5,7 @@ __pycache__
 
 *.DS_Store
 *.ipynb
+*.ipynb_checkpoints
 
 topologies/recommendation/*
 configs/multistage_acc/*

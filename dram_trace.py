@@ -23,6 +23,9 @@ def dram_trace_read_v2(
         dram_trace_file = "dram_log.csv"
     ):
 
+    # word_sz_bytes = 4
+    # default_read_bw = 16
+
     t_fill_start    = -1
     t_drain_start   = 0
     init_bw         = default_read_bw         # Taking an arbitrary initial bw of 4 bytes per cycle
@@ -107,6 +110,9 @@ def dram_trace_write(ofmap_sram_size = 64,
                      sram_write_trace_file = "sram_write.csv",
                      dram_write_trace_file = "dram_write.csv"):
 
+    # data_width_bytes = 4
+    # default_write_bw = 16
+
     traffic = open(sram_write_trace_file, 'r')
     trace_file  = open(dram_write_trace_file, 'w')
 
@@ -170,6 +176,7 @@ def dram_trace_write(ofmap_sram_size = 64,
         #delta_clks = clk - last_clk
         #data_per_clk = math.ceil(len(sram_buffer[draining_buf]) / delta_clks)
         data_per_clk = default_write_bw
+        # data_per_clk = default_write_bw * data_width_bytes
         #print("Data per clk = " + str(data_per_clk))
 
         # Drain the data
@@ -187,6 +194,7 @@ def dram_trace_write(ofmap_sram_size = 64,
 
     if len(sram_buffer[filling_buf]) > 0:
         data_per_clk = default_write_bw
+        # data_per_clk = default_write_bw / data_width_bytes
 
         # Drain the data
         c = reasonable_clk + 1
