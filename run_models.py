@@ -56,11 +56,16 @@ if __name__ == '__main__':
         os.system("cd "+OUTPUT_DIR+"; rm -rf *")
         print("*** Deleting old output logs")
 
-    # array_dims = [[256, 256], [128, 128], [64, 64], [32, 32], [16, 16], [8,8], [4,4]]
-    array_dims = [[64, 64], [64, 64], [64, 64], [64, 64], [64, 64], [64, 64], [64, 64]]
+    #array_dims = [[256, 256], [128, 128], [64, 64], [32, 32], [16, 16], [8,8], [4,4]]
+    array_dims = [[64, 64], [48, 48], [32, 32], [24, 24], [16, 16]]
+    '''
     i_sram_sizes = [8192, 4096, 2048, 1024, 512, 256, 128]
     w_sram_sizes = [8192, 4096, 2048, 1024, 512, 256, 128]
     o_sram_sizes = [8192, 4096, 2048, 1024, 512, 256, 128]
+    '''
+    i_sram_sizes = [2048, 2048, 2048, 2048, 2048]
+    w_sram_sizes = [2048, 2048, 2048, 2048, 2048]
+    o_sram_sizes = [2048, 2048, 2048, 2048, 2048]
 
     # topologies = ["dlrm_0_e4_bs16.csv", "dlrm_1_e16_bs64.csv"]
     topologies = sorted(os.listdir(TOPOLOGIES_DIR))
