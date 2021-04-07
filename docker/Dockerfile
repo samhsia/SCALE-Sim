@@ -1,4 +1,4 @@
-FROM hubris.int.seas.harvard.edu/harvardacc/clusterbase:gpu
+FROM harvardacc/clusterbase:gpu
 
 RUN apt-get update && apt-get install -y \
     vim \
